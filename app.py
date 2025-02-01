@@ -2,10 +2,15 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import time
+from PIL import Image
 
 # Set up the Streamlit app
-st.set_page_config(page_title="Vehicle IDPS Demo", layout="wide")
-st.title("🚗 Vehicle Intrusion Detection and Prevention System (IDPS) Demo")
+st.set_page_config(page_title="Vehicle Cybersecurity Demo", layout="wide")
+st.title("🚗 Vehicle Cybersecurity Simulation Dashboard")
+
+# Load car image
+car_image = Image.open("car_image.png")
+st.image(car_image, caption="Vehicle Simulation", use_column_width=True)
 
 # Simulate CAN Bus Data
 def generate_can_data(num_entries):
@@ -46,6 +51,10 @@ st.subheader("📡 VSOC Notification")
 if st.button("Forward Anomalies to VSOC"):
     if not anomalies.empty:
         st.info("Anomalies forwarded to VSOC for further analysis.")
+        # Simulate VSOC analysis
+        with st.spinner("Analyzing anomalies at VSOC..."):
+            time.sleep(2)
+        st.success("VSOC analysis complete. Threat identified as 'Malware Injection'.")
     else:
         st.info("No anomalies to forward.")
 
@@ -55,3 +64,17 @@ if st.button("Deploy OTA Security Patch"):
     st.info("Deploying OTA Update...")
     time.sleep(2)  # Simulate deployment time
     st.success("OTA Security Patch deployed successfully!")
+
+# IDPS Ruleset Update Simulation
+st.subheader("🛡️ IDPS Ruleset Update")
+if st.button("Update IDPS Ruleset"):
+    st.info("Updating IDPS ruleset to address new threats...")
+    time.sleep(2)  # Simulate update time
+    st.success("IDPS ruleset updated successfully!")
+
+# Quantum Technology Integration Simulation
+st.subheader("🔒 Quantum Technology Integration")
+if st.button("Integrate Quantum Security"):
+    st.info("Integrating quantum technology for enhanced security...")
+    time.sleep(2)  # Simulate integration time
+    st.success("Quantum security measures implemented successfully!")
